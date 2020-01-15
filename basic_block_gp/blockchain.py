@@ -45,7 +45,7 @@ class Blockchain(object):
         # Return the new block
         return block
 
-    def hash(block):
+    def hash(self, block):
         """
         Creates a SHA-256 hash of a Block
 
@@ -90,8 +90,11 @@ class Blockchain(object):
         :return: A valid proof for the provided block
         """
         # TODO
-        pass
-        # return proof
+        block_string = json.dumps(block)
+        proof = 0
+        while self.valid_proof(block_string, proof) is False:
+            proof += 1
+        return proof
 
     @staticmethod
     def valid_proof(block_string, proof):
