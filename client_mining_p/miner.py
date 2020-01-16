@@ -13,7 +13,9 @@ def proof_of_work(block):
     in an effort to find a number that is a valid proof
     :return: A valid proof for the provided block
     """
-    pass
+    guess = f'{last_proof}{proof}'.encode()
+    guess_hash = hashlib.sha256(guess).hexigest()
+    return guess_hash[:6] == "000000"
 
 
 def valid_proof(block_string, proof):
